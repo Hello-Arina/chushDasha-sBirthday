@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ЧушьДаш</title>
+  <link rel="stylesheet" href="style/style.css"/>
+</head>
+<body>
+
+  <!-- Блокер для десктопа -->
+  <div id="desktop-blocker">
+    Этот сайт работает только на телефоне 📱
+  </div>
+
+  <!-- Основное приложение -->
+  <main id="app">
+    <div class="top-bar" id="timer-bar" style="display: none;">
+        <p id="timer-display">00:05</p>
+      </div>
+
+    <!-- Экран 1: Приветствие -->
+    <section id="screen-start" class="active">
+        <div class="group">
+            <div class="card">
+            <p class = "main-text">
+                <span class="text-primary">С днем рождения!</span><br>
+                <span class="text-secondary">Да, да у тебя </span><span class="text-primary">много дел </span><br>
+                <span class="text-primary">сегодня, </span><span class="text-secondary">понимаем</span><br>
+                <span class="text-secondary">но мы отнимем у тебя</span><br>
+                <span class="text-secondary">совсем </span><span class="text-primary">немного времени</span><br>
+                <br>
+                <span class="text-secondary">но придется</span><br>
+                <span class="text-primary">поднапрячься</span>
+            </p>          
+            </div>
+            <button id="btn-start">начать</button>
+        </div>
+    </section>
+
+    <!-- Экран 2: Вопрос -->
+    <section id="screen-question">
+        <div class="top-bar" id="description">
+            <p>первое задание</p>
+        </div>
+        <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">мы подготовили тебе кое-что</span><br>
+                <span class="text-primary">а кто мы?...</span><br>
+                <br>
+                <span class="text-secondary">у нас есть особое название или</span><br>
+                <span class="text-secondary">даже имя... пишем тебе </span><br>
+                <span class="text-primary">из мезоамерики, говорим на 25 языках, а может даже напоминаем пчелку...</span>
+            </p>
+      </div>
+      <button id="btn-to-answer">ответить</button>
+    </div>
+    </section>
+
+    <!-- Экран 3: Ввод ответа -->
+    <section id="screen-answer">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">так кто </span><span class="text-primary">мы?</span>
+                </p>
+            </div>
+            <input type="text" id="answer" placeholder="введи свой ответ сюда"/>
+            <button id="btn-submit">отправить</button>
+        </div>
+    </section>
+
+    <!-- Экран 4: Верно -->
+    <section id="screen-correct">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">да, мы племя майя!</span>
+            </p>
+          </div>
+      <button id="btn-to-wait">следующее задание</button>
+    </div>
+    </section>
+
+    <!-- Экран 5: Ошибка -->
+    <section id="screen-wrong">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">заново</button>
+        </div>
+    </section>
+
+    <!-- Экран 6: Ожидание (СТАТИЧНЫЙ) -->
+    <section id="screen-wait">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+        </div>
+    </section>
+
+<!-- Part 2 -->
+    <section id="part2-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part2-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part2-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>второе задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">чтобы </span><span class="text-primary">пройти этот тернистый путь, </span><br>
+                    <span class="text-secondary">тебе нужно думать </span><span class="text-primary">как майя, </span><span class="text-secondary">быть как майя, а может</span><br>
+                    <span class="text-primary">и стать майя...</span><br>
+                    <br>
+                    <span class="text-secondary">большую часть дня мы занимаемся земледелием и рыбачим, охотимся на медведя или убегаем от него но,</span><br>
+                    <span class="text-primary">где мы чувствуем себя безопасно?</span>
+                </p>
+              </div>
+              <button id="btn-part2-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part2-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">где для нас </span><span class="text-primary">безопасно?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part2" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part2-submit">отправить</button>
+        </div>
+      </section>
+
+
+      <section id="part2-correct" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">верно. </span><span class="text-secondary">ты нашла укрытие, куда не&nbsp;доходит крик солнца.</span><br>
+                <span class="text-primary">пещера</span><span class="text-secondary"> — место, где рождаются сны и&nbsp;говорят духи.
+                    ты&nbsp;всё ближе к&nbsp;истине… </span><br>
+                <span class="text-primary">продолжай путь.</span>
+            </p>
+          </div>
+      <button id="btn-part2-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      
+      <section id="part2-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part2-try">заново</button>
+        </div>
+      </section>
+
+
+      <section id="part2-wait" class="screen">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+        </div>
+      </section>
+      
+      <!-- Part 3 -->
+      <section id="part3-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part3-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part3-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>третье задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">в каждой семье, как и у народа есть</span><br>
+                    <span class="text-secondary">глава семейства, </span><span class="text-primary">вождь, </span><span class="text-secondary">тот, кто нас кормит и&nbsp;поит</span><br>
+                    <br>
+                    <span class="text-primary">откуда он родом, </span><span class="text-secondary">если прибыл </span><br>
+                    <span class="text-primary">с окена, </span><span class="text-secondary">его юбка </span><span class="text-primary">из эвкалипта</span><br>
+                    <span class="text-secondary">и цветов белой акации, а на его</span><br>
+                    <span class="text-secondary">плече всегда </span><span class="text-primary">две ящерки?</span>
+                </p>
+              </div>
+              <button id="btn-part3-to-answer">ответить</button>
+        </div>
+      </section>
+
+
+      <section id="part3-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">откуда </span><span class="text-secondary">же он?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part3" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part3-submit">отправить</button>
+        </div>
+      </section>
+
+
+      <section id="part3-correct" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">верно</span><span class="text-secondary"> — он пришёл с великой воды,</span><br>
+                <span class="text-secondary">из земли, где растёт эвкалипт </span><br>
+                <span class="text-secondary">и живут духи ящериц. </span><span class="text-primary">Австралия.</span><br>
+                <span class="text-secondary">ты услышала знаки — </span><span class="text-primary">путь зовёт дальше.</span>
+            </p>
+          </div>
+      <button id="btn-part3-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+
+      <section id="part3-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part3-try">заново</button>
+        </div>
+      </section>
+
+      <section id="part3-wait" class="screen">
+        <div class="group">
+            <div class="card-itog">
+                <p class = "question-text-itog">племя майя</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">из австралии</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">ждут тебя в пещере</p>
+            </div>
+              <button id="btn-try-again">увидимся завтра! <br> <br> пока-пока</button>
+      </section>
+      
+      <!-- Part 4 -->
+      <section id="part4-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part4-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part4-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>четвертое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">мы не считаем время, как ты.
+                        у нас нет месяцев, но есть солнце, </span><br>
+                    <span class="text-secondary">движение земли и </span><span class="text-primary">счёт, начавшийся с самого рождения мира.</span><br>
+                    <br>
+                    <span class="text-primary">нужный день — 13.0.12.11.8</span><br>
+                    <br>
+                    <span class="text-secondary">ты готовишься к встрече, но знаешь </span><br>
+                    <span class="text-secondary">ли, </span><span class="text-primary">когда она произойдёт?</span><br>
+                    <br>
+                    <span class="text-primary">вглядывайся в числа</span><span class="text-secondary"> — и ты найдёшь дату, к которой всё ведёт.</span>
+                </p>
+              </div>
+              <button id="btn-part4-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part4-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">ну что </span><span class="text-primary">насчитала?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part4" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part4-submit">отправить</button>
+        </div>
+      </section>
+
+      <section id="part4-correct" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-secondary">ты услышала голос времени.</span><br>
+                <span class="text-primary">день назван верно </span><span class="text-secondary">— именно тогда</span><br>
+                <span class="text-secondary">спустится тень и начнётся обряд.</span><br>
+                <span class="text-secondary">приготовься. </span><span class="text-primary">осталось недолго.</span>
+            </p>
+          </div>
+      <button id="btn-part4-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      <section id="part4-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part4-try">заново</button>
+        </div>
+      </section>
+
+      <section id="part4-wait" class="screen">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+      </section>
+      
+      <!-- Part 5 -->
+      <section id="part5-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part5-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part5-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>пятое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">в центре пещеры — </span><span class="text-primary">древние</span><br>
+                    <span class="text-primary">солнечные часы, </span><span class="text-secondary">высеченные в&nbsp;камне. тень от&nbsp;гномона вытянулась </span><br>
+                    <span class="text-secondary">под углом в </span><span class="text-primary">292,5° градусов, </span><span class="text-secondary">солнце</span><br>
+                    <span class="text-secondary">клонится к западу... если ты умеешь читать язык света, скажи — что </span><br>
+                    <span class="text-secondary">за </span><span class="text-primary">время скрыто в этом луче?</span>
+                </p>
+              </div>
+              <button id="btn-part5-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part5-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">сколько показывают </span><span class="text-primary">часы?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part5" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part5-submit">отправить</button>
+        </div>
+      </section>
+
+      <section id="part5-correct" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">верно — солнце указало на&nbsp;семь с&nbsp;половиной. </span><br>
+                <span class="text-secondary">в этот час тень становится тяжёлой, и духи начинают шептать. кажется, </span><br>
+                <span class="text-secondary">скоро </span><span class="text-primary">что-то произойдёт.</span>
+            </p>
+          </div>
+      <button id="btn-part5-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      <section id="part5-wrong" class="screen"><div class="top-bar" id="question">
+        <p>твой ответ</p>
+    </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-primary">ой, не совсем то</span><br>
+                <br>
+                <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+            </p>
+          </div>
+          <button id="btn-part5-try">заново</button>
+    </div>
+      </section>
+
+      <section id="part5-wait" class="screen">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+      </section>
+      
+      <!-- Part 6 -->
+      <section id="part6-start" class="screen">
+        <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part6-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part6-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>шестое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">что их всех </span><span class="text-primary">объединяет?</span><br>
+                    <div class="collage">
+                        <div class="top2">
+                            <div class="imges1"></div>
+                            <div class="imges2"></div>
+                        </div>
+                        <div class="top2">
+                            <div class="imges3"></div>
+                            <div class="imges4"></div>
+                        </div>
+                    </div>
+                </p>
+              </div>
+              <button id="btn-part6-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part6-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">что </span><span class="text-primary">это?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part6" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part6-submit">отправить</button>
+        </div>
+      </section>
+
+      <section id="part6-correct" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">верно. </span><span class="text-secondary">ты поняла, что встреча требует особой подготовки.</span><br>
+                <span class="text-primary">не просто одежда</span><span class="text-secondary"> — это символ, ритуал.</span><br>
+                <span class="text-secondary">на тебе должен быть национальный </span><br>
+                <span class="text-secondary">костюм: исключительно  </span><span class="text-primary">казаки, </span><br>
+                <span class="text-primary">акцентный пояс</span><span class="text-secondary"> и только </span><br>
+                <span class="text-secondary">натуральные ткани — </span><span class="text-primary">кожа, лён, хлопок.</span><br>
+                <span class="text-secondary">лучше выбрать </span><span class="text-primary">коричневые </span><span class="text-secondary">или </span><br>
+                <span class="text-primary">красные</span><span class="text-secondary">оттенки.</span><br>
+                <span class="text-secondary">готовься. ты всё ближе.</span>
+            </p>
+          </div>
+      <button id="btn-part6-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      <section id="part6-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part6-try">заново</button>
+        </div>
+      </section>
+
+      <section id="part6-wait" class="screen">
+        <div class="group">
+            <div class="card-itog">
+                <p class = "question-text-itog">29 июля</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">в 19:30</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">в казаках</p>
+            </div>
+              <button id="btn-try-again">увидимся завтра! <br> <br> пока-пока</button>
+      </section>
+      
+      <!-- Part 7 -->
+      <section id="part7-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part7-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part7-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>седьмое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <div class="collage">
+                    <div class="top2">
+                        <div class="imges5"></div>
+                        <div class="imges6"></div>
+                        <div class="imges7"></div>
+                        <div class="imges8"></div>
+                        <div class="imges9"></div>
+                    </div>
+                </div>
+                <p class = "question-text">
+                    <span class="text-primary">в этих знаках </span><span class="text-secondary">зашифровано</span><br>
+                    <span class="text-primary">название места, </span><span class="text-secondary">знакомого</span><span class="text-primary"> из эвкалипта</span><br>
+                    <span class="text-secondary">каждому, кто бродил по подземным путям города. но будь внимательна </span><br>
+                    <span class="text-primary">— одна буква звучит иначе, </span><span class="text-secondary">как </span><br>
+                    <span class="text-secondary">если бы её произнесли в другой эпохе, на другом языке. кажется, именно так могла бы называться эта </span><br>
+                    <span class="text-primary">станция, если бы существовала во времена майя…</span>
+                </p>
+              </div>
+              <button id="btn-part7-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part7-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">что это за </span><span class="text-primary">станция?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part7" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part7-submit">отправить</button>
+        </div>
+      </section>
+
+      <section id="part7-correct" class="screen">
+        <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ура ура, </span><span class="text-primary">молодец!</span><br>
+                <br>
+                <span class="text-primary">имя, которое ты нашла, </span><span class="text-secondary">словно</span><br>
+                <span class="text-secondary">отражение </span><span class="text-primary">знакомой станции, </span><br>
+                <span class="text-secondary">но увиденное в другом времени. </span><br>
+                <span class="text-primary">арбатун.</span><span class="text-secondary"> кажется, придётся </span><br>
+                <span class="text-primary">спускаться в подземелье…</span>
+            </p>
+          </div>
+      <button id="btn-part7-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      <section id="part7-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part7-try">заново</button>
+        </div>
+      </section>
+
+      <section id="part7-wait" class="screen">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+      </section>
+      
+      <!-- Part 8 -->
+      <section id="part8-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part8-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part8-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>восьмое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">что ж, </span><span class="text-primary">ты молодец </span><span class="text-secondary">загадки почти </span><br>
+                    <span class="text-secondary">кончились, осталось </span><span class="text-primary">добраться </span><br>
+                    <span class="text-primary">до точки, </span><span class="text-secondary">следуй за компасом</span>
+                </p>
+              </div>
+              <button id="btn-part8-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part8-answer" class="screen">
+        <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">не теряй ориентир</span><br>
+                <span class="text-primary">55.757176, 37.602085</span>
+            </p>
+          </div>
+      <button id="btn-part8-to-wait">следующее задание</button>
+    </div>
+      </section>
+
+      <section id="part8-wait" class="screen">
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">тишина. духи молчат. </span><span class="text-secondary">загадка</span><br>
+                    <span class="text-secondary">откроется, когда звёзды встанут правильно.</span>
+                </p>
+              </div>
+              <button id="btn-try-again">я не готов</button>
+      </section>
+      
+      <!-- Part 9 -->
+      <section id="part9-start" class="screen">
+        <div class="top-bar" id="question">
+            <p>дождались</p>
+        </div>
+    <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">туманы рассеялись. </span><span class="text-primary">будь</span><br>
+                <span class="text-primary">внимательна: </span><span class="text-secondary"> каждый символ может</span><br>
+                <span class="text-secondary">быть следом. </span><span class="text-primary">путь продолжается.</span>
+            </p>
+          </div>
+          <button id="btn-part9-start" id="btn-to-wait">давай</button>
+    </div>
+      </section>
+
+      <section id="part9-question" class="screen">
+        <div class="top-bar" id="description">
+            <p>девятое задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">мы отметили твоё место в пещере </span><br>
+                    <span class="text-secondary">знаком — </span><span class="text-primary">цветком, </span><span class="text-secondary">что появился, </span><br>
+                    <span class="text-secondary">когда земли ещё не было,</span><br>
+                    <span class="text-secondary">когда только </span><span class="text-primary">вода </span><span class="text-secondary"> и дыхание </span><span class="text-primary">первых</span><br>
+                    <span class="text-primary">существ. </span><span class="text-secondary">он и сейчас живёт среди </span><br>
+                    <span class="text-primary">рыб и лягушек.</span><br>
+                    <span class="text-secondary">узнаешь его?</span>
+                </p>
+              </div>
+              <button id="btn-part9-to-answer">ответить</button>
+        </div>
+      </section>
+
+      <section id="part9-answer" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">как называется </span><span class="text-primary">цветок?</span>
+                </p>
+            </div>
+            <input type="text" id="input-part9" placeholder="введи свой ответ сюда"/>
+            <button id="btn-part9-submit">отправить</button>
+        </div>
+      </section>
+
+      <section id="part9-correct" class="screen">
+        <div class="group">
+        <div class="card">
+            <p class = "question-text">
+                <span class="text-secondary">ты узнала его — </span><span class="text-primary">лотос, </span><span class="text-primary">древний</span><br>
+                <br>
+                <span class="text-secondary">и тихий. он указал тебе путь.</span><br>
+                <span class="text-primary">ищи его в пещере </span><span class="text-secondary">— там твоё место. духи будут ждать тебя за этим знаком.</span><br>
+            </p>
+          </div>
+      <button id="btn-part9-info">следующее задание</button>
+
+        </div>
+      </section>
+
+      <section id="part9-wrong" class="screen">
+        <div class="top-bar" id="question">
+            <p>твой ответ</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-primary">ой, не совсем то</span><br>
+                    <br>
+                    <span class="text-secondary">ты слышишь, но </span><span class="text-primary">пока</span><br>
+                    <span class="text-primary">не распознаёшь голос. </span><span class="text-secondary">время ещё</span><br>
+                    <span class="text-secondary">не пришло — </span><span class="text-primary">попробуй снова.</span>
+                </p>
+              </div>
+              <button id="btn-part9-try">заново</button>
+        </div>
+      </section>
+
+      <section id="part9-info" class="screen">
+        <div class="group">
+            <div class="card-itog">
+                <p class = "question-text-itog">м. Арбатская</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">55.757176, 37.602085</p>
+            </div>
+            <div class="card-itog">
+                <p class = "question-text-itog">ищи там лотос</p>
+            </div>
+              <button id="btn-part9-extra">следующий шаг</button>
+      </section>
+
+      <section id="part9-extra" class="screen">
+        <div class="top-bar" id="question">
+            <p>финальное задание</p>
+        </div>
+        <div class="group">
+            <div class="card">
+                <p class = "question-text">
+                    <span class="text-secondary">кажется, </span><span class="text-primary">ты всё ближе </span><span class="text-secondary">— символы</span><br>
+                    <span class="text-secondary">сложились, знаки заговорили, и ты уже почти у цели… но твой путь ещё </span><br>
+                    <span class="text-secondary">не закончен, </span><span class="text-primary">мы ждём тебя, чтобы совершить последний обряд посвящения...</span>
+                </p>
+              </div>
+              <button id="btn-part9-final">бегу!</button>
+        </div>
+      </section>
+
+      <section id="part9-final" class="screen">
+        <div class="top-bar" id="description">
+            <p>ждем)</p>
+        </div>
+      </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+@import "reset.css";
+@import "main.css";
+@font-face {
+  font-family: 'NeueMontreal';
+  src: url('../font/PPNeueMontreal-Medium.otf') format("opentype");
+}

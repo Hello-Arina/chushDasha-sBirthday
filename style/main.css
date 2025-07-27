@@ -1,0 +1,261 @@
+/* ——— Общие мобильные стили ——— */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'NeueMontreal', sans-serif;
+    background-image: url('../images/fon.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    background-attachment: fixed;
+    overflow: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  main#app {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  /* Все экраны по умолчанию скрыты */
+  section {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  /* Активный экран */
+  section.active {
+    display: flex;
+  }
+  
+  /* Карточка с текстом */
+  .card {
+    display: inline-flex;
+    padding: 4.362vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.908vw;
+    border-radius: 5.816vw;
+    background: #FFF;
+  }
+  .card-itog {
+    display: inline-flex;
+    padding: 4.362vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.908vw;
+    border-radius: 5.816vw;
+    background: #000;
+    color: #FFF;
+  }
+  
+  /* Кнопки */
+  button {
+    display: flex;
+    width: 90vw;
+    height: 83.846vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 14.449vw;
+    border: none;
+    border-radius: 5.128vw;
+    background: #EB8F59;
+    box-shadow: 0px 0px 12.128vw 0px #FD650D inset;
+    backdrop-filter: blur(4.423vw);
+    color: #FFA36E;
+    flex-shrink: 0;
+    text-transform: lowercase;
+    transition: background 0.2s;
+  }
+  button:hover {
+    background: #da6f18;
+  }
+  #btn-to-wait, #btn-part2-to-wait, #btn-part3-to-wait, #btn-part4-to-wait, #btn-part5-to-wait, #btn-part6-to-wait, #btn-part7-to-wait, #btn-part8-to-wait, #btn-part9-to-wait   {
+    background: #6C6A4B;
+    box-shadow: 0px 0px 12.128vw 0px #3B4D30 inset;
+    color: #7A7857;
+}
+  #btn-try-again, #btn-part2-try-again, #btn-part3-try-again, #btn-part4-try-again, #btn-part5-try-again, #btn-part6-try-again, #btn-part7-try-again, #btn-part8-try-again, #btn-part9-try-again, #btn-part2-try, #btn-part3-try, #btn-part4-try, #btn-part5-try, #btn-part6-try, #btn-part7-try, #btn-part8-try, #btn-part9-try {
+    background: #A43D3D;
+    box-shadow: 0px 0px 12.128vw 0px #742626 inset;
+    color: #B34A4A;
+}
+  
+  /* Поле ввода */
+  input {
+    display: inline-flex;
+    padding: 4.362vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.908vw;
+    border-radius: 5.816vw;
+    background: #CCC;
+    text-align: center;
+    font-size: 5.128vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120.126%; 
+    letter-spacing: -0.103vw;
+    border: none;
+    outline: none;  
+    color: #FFF;
+  }
+  placeholder {
+    color: #FFF;
+  }
+  input::placeholder {
+    color: #fff;
+    opacity: 1; /* чтобы браузер не понижал непрозрачность автоматически */
+  }
+
+  /* ——— Блокер для десктопа ——— */
+  #desktop-blocker {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-family: sans-serif;
+    display: none; /* пока скрыт, JS покажет при необходимости */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    z-index: 10000;
+  }
+  
+  /* Разные цвета внутри текста */
+.text-primary {
+    color: #000000; 
+  }
+  
+.text-secondary {
+    color: #CCCCCC; 
+}  
+
+.main-text{
+    text-align: center;
+    font-size: 7.366vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 90%; 
+    letter-spacing: -0.146vw;
+}
+.question-text{
+    text-align: center;
+    font-size: 5.128vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120.126%; 
+    letter-spacing: -0.103vw;
+}
+.group {
+    display: flex;
+    width: 90.444vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.333vw;
+    margin-top: auto; 
+}
+.top-bar{
+    display: inline-flex;
+    padding: 4.362vw;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 5.816vw;
+}
+#description {
+    background: #FFF;
+    color: #000;
+}
+#question {
+    background: #000;
+    color: #FFF;
+}
+#timer-bar {
+    background: #000;
+    color: #FFF;
+    display: none;
+    position: absolute;      
+    top: 4.167vh;            
+    left: 50%;               
+    transform: translateX(-50%);
+    padding: 4.362vw;
+    border-radius: 5.816vw;
+    z-index: 1000; 
+}
+.top2 {
+    display: flex;
+align-items: center;
+gap: 1.538vw;
+align-self: stretch;
+}
+.collage {
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap:  1.538vw;;
+}
+.imges1, .imges2, .imges3, .imges4 {
+    width: 19.391vw;
+height: 20.329vw;
+aspect-ratio: 19.392/20.328;
+border-radius: 1.603vw;
+}
+.imges1 {
+    background: url(../images/ph1.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges2 {
+    background: url(../images/ph2.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges3 {
+    background: url(../images/ph3.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges4 {
+    background: url(../images/ph4.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges5 {
+    background: url(../images/one.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges6 {
+    background: url(../images/two.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges7 {
+    background: url(../images/three.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges8 {
+    background: url(../images/four.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.imges8 {
+    background: url(../images/five.png) 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+}
