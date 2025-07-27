@@ -1,5 +1,5 @@
 // script.js
-const DEFAULT_WAIT_SECONDS = 4 * 60 * 60;
+const DEFAULT_WAIT_SECONDS = 2 * 60 * 60;
 
 document.addEventListener("DOMContentLoaded", () => {
     // ——— Все экраны ———

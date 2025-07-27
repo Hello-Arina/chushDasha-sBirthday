@@ -188,7 +188,7 @@
     background: #000;
     color: #FFF;
     display: none;
-    position: absolute;      
+    position: fixed;      
     top: 4.167vh;            
     left: 50%;               
     transform: translateX(-50%);
