@@ -132,9 +132,14 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // ——— Навешиваем обработчики ———
     window.addEventListener("load", () => {
-      // блокер для десктопа
-      checkWidth();
-      window.addEventListener("resize", checkWidth);
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+      
+        // ─── Сбрасываем сохранённый прогресс, чтобы Part1–3 не восстанавливались ───
+        localStorage.removeItem("currentScreen");
+        // если вдруг хранятся "waitEnd_…" для Part1–3 — тоже уберём их:
+        ["screen-wait","part2-wait","part3-wait"].forEach(id =>
+          localStorage.removeItem(`waitEnd_${id}`));
   
       // Part 1
       document.getElementById("btn-start").onclick     = () => showScreen("screen-question");
@@ -223,14 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("btn-part9-extra").onclick     = () => showScreen("part9-extra");
       document.getElementById("btn-part9-final").onclick     = () => showScreen("part9-final");
   
-      // экран из localStorage
-  const saved = localStorage.getItem("currentScreen");
-  if (saved && screens.includes(saved)) {
-    showScreen(saved);
-  } else {
-    showScreen("screen-start");
-  }
+      showScreen("part4-start");
+});
 
     });
-  });
-  
+ 
