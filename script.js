@@ -140,8 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("btn-part9-extra"   ).onclick = () => showScreen("part9-extra");
       document.getElementById("btn-part9-final"   ).onclick = () => showScreen("part9-final");
   
-      // сразу показываем старт Part 8
-      showScreen("part8-start");
+      // сразу показываем старт Part 9
+      showScreen("part9-start");
     });
   });
   
