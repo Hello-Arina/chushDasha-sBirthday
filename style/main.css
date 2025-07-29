@@ -214,6 +214,13 @@ height: 20.329vw;
 aspect-ratio: 19.392/20.328;
 border-radius: 1.603vw;
 }
+.imges5, .imges6, .imges7, .imges8, .imges9 { 
+    width: 14.772vw;
+    height: 13.636vw;
+    aspect-ratio: 57.61/53.18;
+    border-radius: 1.603vw;
+
+}
 .imges1 {
     background: url(../images/ph1.png) 100% no-repeat;
     background-size: cover;
@@ -254,7 +261,7 @@ border-radius: 1.603vw;
     background-size: cover;
     background-position: center;
 }
-.imges8 {
+.imges9 {
     background: url(../images/five.png) 100% no-repeat;
     background-size: cover;
     background-position: center;

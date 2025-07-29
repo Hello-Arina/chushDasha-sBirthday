@@ -1,54 +1,55 @@
 // script.js
 
 document.addEventListener("DOMContentLoaded", () => {
-    // ——— Интервал ожидания между частями: 3 часа в секундах ———
-    const DEFAULT_WAIT_SECONDS = 3 * 60 * 60;
+    // ——— Интервал ожидания: 1 час 30 минут в секундах ———
+    const DEFAULT_WAIT_SECONDS = 1.5 * 60 * 60; // 5400 секунд
   
-    // ——— Список экранов только Part 6–9 ———
+    // ——— Список экранов Part 7–9 ———
     const screens = [
-      // Part 6
-      "part6-start","part6-question","part6-answer","part6-correct","part6-wrong","part6-wait",
       // Part 7
-      "part7-start","part7-question","part7-answer","part7-correct","part7-wrong","part7-wait",
+      "part7-start", "part7-question", "part7-answer", "part7-correct", "part7-wrong", "part7-wait",
       // Part 8
-      "part8-start","part8-question","part8-answer","part8-wait",
+      "part8-start", "part8-question", "part8-answer", "part8-wait",
       // Part 9
-      "part9-start","part9-question","part9-answer","part9-correct","part9-wrong",
-      "part9-info","part9-extra","part9-final"
+      "part9-start", "part9-question", "part9-answer", "part9-correct", "part9-wrong",
+      "part9-info", "part9-extra", "part9-final"
     ];
   
-    // ——— Правильные ответы для Part 6–9 ———
+    // ——— Правильные ответы для Part 7–9 ———
     const correct = {
-      part6: ["одежда","костюм","дресс-код","дрес-код"],
       part7: ["арбатун","албатун","арбатская"],
-      // part8 — нет поля ввода
+      // part8 — без ввода
       part9: ["лотос"]
     };
   
-    // ——— Переходы после экрана ожидания ———
+    // ——— Куда переходим после экрана ожидания ———
     const waitNext = {
-      "part6-wait": "part7-start",
       "part7-wait": "part8-start",
       "part8-wait": "part9-start"
+      // дальше просто финал, таймер не нужен
     };
   
-    // ——— Глобальные DOM‑элементы и таймер ———
+    // ——— Глобальные элементы и таймер ———
     const app       = document.getElementById("app");
     const blocker   = document.getElementById("desktop-blocker");
     const timerBar  = document.getElementById("timer-bar");
     const timerDisp = document.getElementById("timer-display");
-    let timerHandle, timerSec;
+    let timerHandle;
   
-    // ——— Показываем нужный экран и запускаем/останавливаем таймер ———
+    // ——— Функция показа экрана ———
     function showScreen(id) {
+      // скрываем все секции из списка
       screens.forEach(s => document.getElementById(s)?.classList.remove("active"));
+      // показываем нужную
       document.getElementById(id)?.classList.add("active");
+      // сохраняем прогресс
       localStorage.setItem("currentScreen", id);
+      // запускаем или останавливаем таймер
       if (waitNext[id]) startTimer(id);
       else stopTimer();
     }
   
-    // ——— Блокировка для десктопа ———
+    // ——— Блокировка десктопа ———
     function checkWidth() {
       if (window.innerWidth > 600) {
         blocker.style.display = "flex";
@@ -59,64 +60,60 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-    // ——— Таймер с сохранением состояния ———
+    // ——— Таймер с хранением в localStorage ———
     function startTimer(waitId) {
       stopTimer();
       const key = `waitEnd_${waitId}`;
       let endTS = localStorage.getItem(key);
+  
       if (!endTS) {
         endTS = Date.now() + DEFAULT_WAIT_SECONDS * 1000;
         localStorage.setItem(key, endTS);
       } else {
         endTS = Number(endTS);
       }
+  
       timerBar.style.display = "flex";
+  
       function tick() {
-        const rem = Math.ceil((endTS - Date.now())/1000);
+        const rem = Math.ceil((endTS - Date.now()) / 1000);
         if (rem <= 0) {
           clearInterval(timerHandle);
           timerBar.style.display = "none";
           localStorage.removeItem(key);
           showScreen(waitNext[waitId]);
         } else {
-          const h = Math.floor(rem/3600);
-          const m = Math.floor((rem%3600)/60);
-          const s = rem%60;
+          const h = Math.floor(rem / 3600);
+          const m = Math.floor((rem % 3600) / 60);
+          const s = rem % 60;
           timerDisp.textContent =
-            (h>0?String(h).padStart(2,"0")+":":"") +
-            String(m).padStart(2,"0")+":" +
-            String(s).padStart(2,"0");
+            (h > 0 ? String(h).padStart(2, "0") + ":" : "") +
+            String(m).padStart(2, "0") + ":" +
+            String(s).padStart(2, "0");
         }
       }
+  
       tick();
       timerHandle = setInterval(tick, 1000);
     }
+  
     function stopTimer() {
       clearInterval(timerHandle);
       timerBar.style.display = "none";
     }
   
-    // ——— Привязка кнопок и запуск сразу Part 6 ———
+    // ——— При загрузке страницы ———
     window.addEventListener("load", () => {
+      // проверка ширины
       checkWidth();
       window.addEventListener("resize", checkWidth);
   
-      // Сбрасываем любые сохранённые экраны до Part 6
+      // сбрасываем прогресс и таймеры для всех Part 1–6
       localStorage.removeItem("currentScreen");
-      ["screen-wait","part2-wait","part3-wait","part4-wait","part5-wait"]
+      ["screen-wait","part2-wait","part3-wait","part4-wait","part5-wait","part6-wait"]
         .forEach(id => localStorage.removeItem(`waitEnd_${id}`));
   
-      // Part 6
-      document.getElementById("btn-part6-start"   ).onclick = () => showScreen("part6-question");
-      document.getElementById("btn-part6-to-answer").onclick = () => showScreen("part6-answer");
-      document.getElementById("btn-part6-submit"  ).onclick = () => {
-        const v = document.getElementById("input-part6").value.trim().toLowerCase();
-        showScreen(correct.part6.includes(v) ? "part6-correct" : "part6-wrong");
-      };
-      document.getElementById("btn-part6-try"     ).onclick = () => showScreen("part6-question");
-      document.getElementById("btn-part6-to-wait" ).onclick = () => showScreen("part6-wait");
-  
-      // Part 7
+      // привязка кнопок для Part 7
       document.getElementById("btn-part7-start"   ).onclick = () => showScreen("part7-question");
       document.getElementById("btn-part7-to-answer").onclick = () => showScreen("part7-answer");
       document.getElementById("btn-part7-submit"  ).onclick = () => {
@@ -126,12 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("btn-part7-try"     ).onclick = () => showScreen("part7-question");
       document.getElementById("btn-part7-to-wait" ).onclick = () => showScreen("part7-wait");
   
-      // Part 8
+      // привязка кнопок для Part 8
       document.getElementById("btn-part8-start"   ).onclick = () => showScreen("part8-question");
       document.getElementById("btn-part8-to-answer").onclick = () => showScreen("part8-answer");
       document.getElementById("btn-part8-to-wait" ).onclick = () => showScreen("part8-wait");
   
-      // Part 9
+      // привязка кнопок для Part 9
       document.getElementById("btn-part9-start"   ).onclick = () => showScreen("part9-question");
       document.getElementById("btn-part9-to-answer").onclick = () => showScreen("part9-answer");
       document.getElementById("btn-part9-submit"  ).onclick = () => {
@@ -143,9 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("btn-part9-extra"   ).onclick = () => showScreen("part9-extra");
       document.getElementById("btn-part9-final"   ).onclick = () => showScreen("part9-final");
   
-      // Показываем сразу Part 6
-      showScreen("part6-start");
+      // сразу показываем старт Part 7
+      showScreen("part7-start");
     });
   });
   
- 
